@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PropTax | Payment</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo-wrap small">
+            <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+            <div>
+              <h1>PropTax</h1>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <a class="nav-item" href="dashboard.html"><span>📊</span> Dashboard</a>
+          <a class="nav-item" href="property-search.html"><span>🔎</span> Search Property</a>
+          <a class="nav-item" href="property-details.html"><span>🏠</span> Property Details</a>
+          <a class="nav-item" href="self-assessment.html"><span>📝</span> Self-Assessment</a>
+          <a class="nav-item" href="tax-calculator.html"><span>🧮</span> Tax Calculator</a>
+          <a class="nav-item active" href="payment.html"><span>💳</span> Payments</a>
+          <a class="nav-item" href="receipt.html"><span>🧾</span> Receipts</a>
+          <a class="nav-item" href="objections.html"><span>⚖️</span> Objections</a>
+          <a class="nav-item" href="help.html"><span>❔</span> Help &amp; Support</a>
+          <a class="nav-item" href="#"><span>👤</span> Profile</a>
+          <a class="nav-item logout-link" href="index.html"><span>↩️</span> Logout</a>
+        </nav>
+      </aside>
+
+      <div class="content-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+            <div class="logo-wrap compact">
+              <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+              <div>
+                <h2>PropTax</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="search-box">
+              <span>🔎</span>
+              <input type="search" placeholder="Search" aria-label="Search payments" />
+            </div>
+            <button class="icon-button" aria-label="Notifications">🔔</button>
+            <div class="user-pill">
+              <div class="avatar">RS</div>
+              <div>
+                <strong>Ragini Singh</strong>
+                <small>Citizen</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <div class="page-header-row">
+            <div>
+              <p class="eyebrow">Payment Portal</p>
+              <h3>Make Payment</h3>
+            </div>
+          </div>
+
+          <section class="card-block payment-layout">
+            <div class="payment-summary" id="paymentSummary"></div>
+
+            <div class="payment-methods">
+              <div class="section-header">
+                <h4>Choose Payment Method</h4>
+              </div>
+
+              <form id="paymentForm" novalidate>
+                <div class="payment-options">
+                  <label class="method-option">
+                    <input type="radio" name="paymentMethod" value="UPI" checked />
+                    <span>UPI</span>
+                  </label>
+                  <label class="method-option">
+                    <input type="radio" name="paymentMethod" value="Debit/Credit Card" />
+                    <span>Debit/Credit Card</span>
+                  </label>
+                  <label class="method-option">
+                    <input type="radio" name="paymentMethod" value="Net Banking" />
+                    <span>Net Banking</span>
+                  </label>
+                </div>
+
+                <div class="inline-actions justify-end">
+                  <button type="button" class="primary-btn" id="payNowBtn">Pay Now</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="paymentModal" class="modal hidden" aria-modal="true" role="dialog" aria-labelledby="paymentModalTitle">
+      <div class="modal-content small">
+        <button class="modal-close" aria-label="Close confirmation">×</button>
+        <h4 id="paymentModalTitle">Confirm payment</h4>
+        <p id="confirmPaymentText">Confirm payment of ₹0?</p>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" id="cancelPaymentBtn">Cancel</button>
+          <button type="button" class="primary-btn" id="confirmPaymentBtn">Confirm Payment</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

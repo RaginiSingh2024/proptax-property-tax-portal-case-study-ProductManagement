@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PropTax | Payment Successful</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell compact-shell">
+      <main class="page-content centered-page">
+        <section class="success-card card-block">
+          <div class="success-icon" aria-label="Payment successful">✓</div>
+          <p class="eyebrow success-text">Transaction Complete</p>
+          <h3>Payment Successful</h3>
+
+          <div id="successDetails" class="success-details"></div>
+
+          <div class="inline-actions justify-center">
+            <a href="receipt.html" class="secondary-btn">View Receipt</a>
+            <a href="payment-history.html" class="secondary-btn">Payment History</a>
+            <a href="dashboard.html" class="primary-btn">Back to Dashboard</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

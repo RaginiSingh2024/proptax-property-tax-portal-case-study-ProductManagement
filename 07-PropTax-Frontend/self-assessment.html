@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PropTax | Self-Assessment</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo-wrap small">
+            <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+            <div>
+              <h1>PropTax</h1>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <a class="nav-item" href="dashboard.html"><span>📊</span> Dashboard</a>
+          <a class="nav-item" href="property-search.html"><span>🔎</span> Search Property</a>
+          <a class="nav-item" href="property-details.html"><span>🏠</span> Property Details</a>
+          <a class="nav-item active" href="self-assessment.html"><span>📝</span> Self-Assessment</a>
+          <a class="nav-item" href="tax-calculator.html"><span>🧮</span> Tax Calculator</a>
+          <a class="nav-item" href="payment.html"><span>💳</span> Payments</a>
+          <a class="nav-item" href="receipt.html"><span>🧾</span> Receipts</a>
+          <a class="nav-item" href="objections.html"><span>⚖️</span> Objections</a>
+          <a class="nav-item" href="help.html"><span>❔</span> Help &amp; Support</a>
+          <a class="nav-item" href="#"><span>👤</span> Profile</a>
+          <a class="nav-item logout-link" href="index.html"><span>↩️</span> Logout</a>
+        </nav>
+      </aside>
+
+      <div class="content-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+            <div class="logo-wrap compact">
+              <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+              <div>
+                <h2>PropTax</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="search-box">
+              <span>🔎</span>
+              <input type="search" placeholder="Search" aria-label="Search page" />
+            </div>
+            <button class="icon-button" aria-label="Notifications">🔔</button>
+            <div class="user-pill">
+              <div class="avatar">RS</div>
+              <div>
+                <strong>Ragini Singh</strong>
+                <small>Citizen</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <div class="page-header-row">
+            <div>
+              <p class="eyebrow">Assessment</p>
+              <h3>Self-Assessment</h3>
+            </div>
+          </div>
+
+          <section class="card-block">
+            <div class="progress-indicator" aria-label="Assessment progress">
+              <div class="step active"><span>1</span><small>Property Details</small></div>
+              <div class="step"><span>2</span><small>Classification</small></div>
+              <div class="step"><span>3</span><small>Assessment Inputs</small></div>
+              <div class="step"><span>4</span><small>Review</small></div>
+              <div class="step"><span>5</span><small>Submit</small></div>
+            </div>
+          </section>
+
+          <section class="card-block">
+            <form id="selfAssessmentForm" class="assessment-form" novalidate>
+              <div class="field-grid">
+                <div class="field-group">
+                  <label for="assessmentPropertyId">Property ID</label>
+                  <input id="assessmentPropertyId" name="propertyId" type="text" required />
+                  <small class="field-error" id="assessmentPropertyIdError"></small>
+                </div>
+                <div class="field-group">
+                  <label for="assessmentOwner">Owner Name</label>
+                  <input id="assessmentOwner" name="ownerName" type="text" required />
+                  <small class="field-error" id="assessmentOwnerError"></small>
+                </div>
+                <div class="field-group">
+                  <label for="assessmentType">Property Type</label>
+                  <select id="assessmentType" name="propertyType" required>
+                    <option value="">Select type</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Industrial">Industrial</option>
+                  </select>
+                  <small class="field-error" id="assessmentTypeError"></small>
+                </div>
+                <div class="field-group">
+                  <label for="assessmentBuiltUpArea">Built-up Area (sq.ft.)</label>
+                  <input id="assessmentBuiltUpArea" name="builtUpArea" type="number" min="1" step="1" required />
+                  <small class="field-error" id="assessmentBuiltUpAreaError"></small>
+                </div>
+                <div class="field-group">
+                  <label for="assessmentAge">Property Age (years)</label>
+                  <input id="assessmentAge" name="propertyAge" type="number" min="0" step="1" required />
+                  <small class="field-error" id="assessmentAgeError"></small>
+                </div>
+                <div class="field-group">
+                  <label for="assessmentWard">Ward</label>
+                  <input id="assessmentWard" name="ward" type="text" required />
+                  <small class="field-error" id="assessmentWardError"></small>
+                </div>
+                <div class="field-group full-width">
+                  <label for="assessmentUsage">Usage Type</label>
+                  <select id="assessmentUsage" name="usageType" required>
+                    <option value="">Select usage</option>
+                    <option value="Self Occupied">Self Occupied</option>
+                    <option value="Rented">Rented</option>
+                  </select>
+                  <small class="field-error" id="assessmentUsageError"></small>
+                </div>
+              </div>
+
+              <div class="inline-actions justify-end">
+                <button type="submit" class="primary-btn">Continue to Tax Calculation</button>
+              </div>
+            </form>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

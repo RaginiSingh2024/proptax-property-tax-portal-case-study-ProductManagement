@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PropTax | Property Details</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="logo-wrap small">
+            <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+            <div>
+              <h1>PropTax</h1>
+            </div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <a class="nav-item" href="dashboard.html"><span>📊</span> Dashboard</a>
+          <a class="nav-item" href="property-search.html"><span>🔎</span> Search Property</a>
+          <a class="nav-item active" href="property-details.html"><span>🏠</span> Property Details</a>
+          <a class="nav-item" href="self-assessment.html"><span>📝</span> Self-Assessment</a>
+          <a class="nav-item" href="tax-calculator.html"><span>🧮</span> Tax Calculator</a>
+          <a class="nav-item" href="payment.html"><span>💳</span> Payments</a>
+          <a class="nav-item" href="receipt.html"><span>🧾</span> Receipts</a>
+          <a class="nav-item" href="objections.html"><span>⚖️</span> Objections</a>
+          <a class="nav-item" href="help.html"><span>❔</span> Help &amp; Support</a>
+          <a class="nav-item" href="#"><span>👤</span> Profile</a>
+          <a class="nav-item logout-link" href="index.html"><span>↩️</span> Logout</a>
+        </nav>
+      </aside>
+
+      <div class="content-area">
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+            <div class="logo-wrap compact">
+              <div class="logo-badge"><span class="logo-icon">🏛️</span></div>
+              <div>
+                <h2>PropTax</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-actions">
+            <div class="search-box">
+              <span>🔎</span>
+              <input type="search" placeholder="Search" aria-label="Search properties" />
+            </div>
+            <button class="icon-button" aria-label="Notifications">🔔</button>
+            <div class="user-pill">
+              <div class="avatar">RS</div>
+              <div>
+                <strong>Ragini Singh</strong>
+                <small>Citizen</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="page-content">
+          <div class="page-header-row">
+            <div>
+              <p class="eyebrow">Property Record</p>
+              <h3>Property Details</h3>
+            </div>
+            <button class="primary-btn" id="startAssessmentBtn">Start Self-Assessment</button>
+          </div>
+
+          <section class="card-block">
+            <div id="propertyDetailContent" class="details-card"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

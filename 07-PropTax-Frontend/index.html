@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PropTax | Citizen Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-shell">
+      <header class="brand-header">
+        <div class="logo-wrap" aria-label="PropTax logo">
+          <div class="logo-badge">
+            <span class="logo-icon">🏛️</span>
+          </div>
+          <div>
+            <h1>PropTax</h1>
+            <p>Property Tax Self-Assessment Portal</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="auth-card" aria-label="Citizen login form">
+        <div class="card-header">
+          <p class="eyebrow">Secure Access</p>
+          <h2>Citizen Login</h2>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="field-group">
+            <label for="loginIdentifier">Email / Mobile Number</label>
+            <input id="loginIdentifier" name="loginIdentifier" type="text" placeholder="Enter email or mobile number" required />
+            <small class="field-error" id="loginIdentifierError"></small>
+          </div>
+
+          <div class="field-group">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" name="loginPassword" type="password" placeholder="Enter password" required />
+            <small class="field-error" id="loginPasswordError"></small>
+          </div>
+
+          <button type="submit" class="primary-btn full-width">Login</button>
+          <button type="button" class="secondary-btn full-width" id="demoLoginBtn">Continue with Demo Account</button>
+
+          <div class="auth-links">
+            <a href="#">Forgot Password?</a>
+            <a href="#">New Citizen? Create Account</a>
+          </div>
+        </form>
+
+        <div class="security-note">
+          <span class="security-icon">🔒</span>
+          <p>Your information is protected using secure access controls.</p>
+        </div>
+      </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
