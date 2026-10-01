@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ensureDemoData();
   handleAuth();
   initNavigation();
+  initUserDisplay();
   initLoginPage();
+  initProfilePage();
   initPropertySearchPage();
   initPropertyDetailsPage();
   initSelfAssessmentPage();
@@ -35,6 +37,9 @@ function initNavigation() {
 
   const navLinks = document.querySelectorAll('.nav-item');
   navLinks.forEach((link) => {
+    if (link.textContent.includes('Profile')) {
+      link.setAttribute('href', 'profile.html');
+    }
     const currentPath = window.location.pathname.split('/').pop();
     const linkPath = link.getAttribute('href');
     if (linkPath && currentPath === linkPath) {
@@ -49,6 +54,99 @@ function initNavigation() {
         modal.classList.add('hidden');
       }
     });
+  });
+}
+
+function initUserDisplay() {
+  const profile = getProfile();
+  const fullName = `${profile.firstName} ${profile.lastName}`.trim();
+  const initials = `${profile.firstName.charAt(0)}${profile.lastName.charAt(0)}`.toUpperCase();
+
+  document.querySelectorAll('.user-pill').forEach((userPill) => {
+    const avatar = userPill.querySelector('.avatar');
+    const name = userPill.querySelector('strong');
+    const role = userPill.querySelector('small');
+    if (avatar) avatar.textContent = initials;
+    if (name) name.textContent = fullName;
+    if (role) role.textContent = profile.role;
+  });
+}
+
+function initProfilePage() {
+  const profileForm = document.getElementById('profileForm');
+  if (!profileForm) return;
+
+  const profileView = document.getElementById('profileView');
+  const editProfileBtn = document.getElementById('editProfileBtn');
+  const cancelProfileBtn = document.getElementById('cancelProfileBtn');
+  const profile = getProfile();
+  const editableFields = ['firstName', 'lastName', 'email', 'mobile', 'address', 'city', 'ward'];
+
+  function renderProfileView(savedProfile) {
+    const fullName = `${savedProfile.firstName} ${savedProfile.lastName}`.trim();
+    const initials = `${savedProfile.firstName.charAt(0)}${savedProfile.lastName.charAt(0)}`.toUpperCase();
+    document.getElementById('profileAvatar').textContent = initials;
+    document.getElementById('profileFullName').textContent = fullName;
+    document.getElementById('profileRole').textContent = savedProfile.role;
+    document.getElementById('profileStatus').textContent = savedProfile.status;
+    editableFields.forEach((field) => {
+      const value = document.getElementById(`profile-${field}`);
+      const display = document.querySelector(`[data-profile-value="${field}"]`);
+      if (value) value.value = savedProfile[field];
+      if (display) display.textContent = savedProfile[field];
+    });
+    document.getElementById('profile-role-value').textContent = savedProfile.role;
+    document.getElementById('profile-status-value').textContent = savedProfile.status;
+  }
+
+  function setEditing(isEditing) {
+    profileView.classList.toggle('hidden', isEditing);
+    profileForm.classList.toggle('hidden', !isEditing);
+    editProfileBtn.classList.toggle('hidden', isEditing);
+  }
+
+  function clearErrors() {
+    profileForm.querySelectorAll('.field-error').forEach((error) => {
+      error.textContent = '';
+    });
+  }
+
+  function validateProfile() {
+    clearErrors();
+    const values = Object.fromEntries(new FormData(profileForm).entries());
+    const errors = {};
+    const fieldLabels = { firstName: 'First name', lastName: 'Last name', address: 'Address', city: 'City', ward: 'Ward' };
+    ['firstName', 'lastName', 'address', 'city', 'ward'].forEach((field) => {
+      if (!values[field].trim()) errors[field] = `${fieldLabels[field]} cannot be empty.`;
+    });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
+      errors.email = 'Enter a valid email address.';
+    }
+    if (!/^[0-9+()\-\s]{7,20}$/.test(values.mobile.trim()) || !/\d/.test(values.mobile)) {
+      errors.mobile = 'Enter a valid mobile number.';
+    }
+    Object.entries(errors).forEach(([field, message]) => {
+      document.getElementById(`profile-${field}-error`).textContent = message;
+    });
+    return { values, isValid: Object.keys(errors).length === 0 };
+  }
+
+  renderProfileView(profile);
+  editProfileBtn.addEventListener('click', () => setEditing(true));
+  cancelProfileBtn.addEventListener('click', () => {
+    renderProfileView(getProfile());
+    setEditing(false);
+  });
+  profileForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const result = validateProfile();
+    if (!result.isValid) return;
+    const savedProfile = { ...getProfile(), ...result.values };
+    saveProfile(savedProfile);
+    renderProfileView(savedProfile);
+    initUserDisplay();
+    setEditing(false);
+    showToast('Profile updated successfully.', 'success');
   });
 }
 

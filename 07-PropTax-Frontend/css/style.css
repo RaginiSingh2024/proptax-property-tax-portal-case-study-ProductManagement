@@ -1154,6 +1154,96 @@ img {
   color: var(--text);
 }
 
+.hidden {
+  display: none !important;
+}
+
+.profile-card {
+  max-width: 980px;
+}
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.profile-hero h4 {
+  margin: 0;
+  color: var(--primary);
+  font-size: 1.35rem;
+}
+
+.profile-hero p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.profile-hero .status-badge {
+  margin-left: auto;
+}
+
+.profile-section {
+  padding: 1.35rem 0 0;
+}
+
+.profile-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1rem;
+}
+
+.profile-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+  padding: 0.9rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.profile-detail-wide {
+  grid-column: 1 / -1;
+}
+
+.profile-detail strong {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.profile-detail span {
+  overflow-wrap: anywhere;
+}
+
+.profile-form {
+  padding-top: 0.2rem;
+}
+
+.profile-form input[readonly] {
+  background: var(--surface-alt);
+  color: var(--muted);
+}
+
+.profile-actions {
+  margin-top: 1.35rem;
+}
+
 @media (max-width: 980px) {
   .stats-grid,
   .action-grid,
@@ -1188,6 +1278,7 @@ img {
 @media (max-width: 720px) {
   .field-grid,
   .detail-grid,
+  .profile-detail-grid,
   .success-details,
   .receipt-grid,
   .stats-grid,

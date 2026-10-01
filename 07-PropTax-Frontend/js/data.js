@@ -87,11 +87,24 @@ const propTaxProperties = [
 
 const STORAGE_KEYS = {
   session: 'proptax-demo-user',
+  profile: 'proptax-profile',
   selectedProperty: 'proptax-selected-property',
   assessment: 'proptax-assessment-data',
   taxCalculation: 'proptax-tax-calculation',
   payments: 'proptax-payment-history',
   objections: 'proptax-objections'
+};
+
+const defaultProfile = {
+  firstName: 'Ragini',
+  lastName: 'Singh',
+  email: 'ragini@example.com',
+  mobile: '9876543210',
+  address: 'Demo Address',
+  city: 'Mumbai',
+  ward: 'Ward 12',
+  role: 'Citizen',
+  status: 'Active'
 };
 
 const defaultPaymentRecords = [
@@ -153,6 +166,10 @@ function saveStoredData(key, value) {
 }
 
 function ensureDemoData() {
+  if (!getStoredData(STORAGE_KEYS.profile, null)) {
+    saveStoredData(STORAGE_KEYS.profile, defaultProfile);
+  }
+
   if (!getStoredData(STORAGE_KEYS.payments, null)) {
     saveStoredData(STORAGE_KEYS.payments, defaultPaymentRecords);
   }
@@ -175,14 +192,27 @@ function setSelectedProperty(property) {
 }
 
 function getCurrentUser() {
-  return getStoredData(STORAGE_KEYS.session, {
-    name: 'Ragini Singh',
-    email: 'ragini.demo@proptax.gov.in'
-  });
+  const profile = getProfile();
+  return {
+    name: `${profile.firstName} ${profile.lastName}`.trim(),
+    email: profile.email
+  };
 }
 
 function setCurrentUser(user) {
   saveStoredData(STORAGE_KEYS.session, user);
+}
+
+function getProfile() {
+  return getStoredData(STORAGE_KEYS.profile, defaultProfile);
+}
+
+function saveProfile(profile) {
+  saveStoredData(STORAGE_KEYS.profile, profile);
+  setCurrentUser({
+    name: `${profile.firstName} ${profile.lastName}`.trim(),
+    email: profile.email
+  });
 }
 
 function buildPropertyLookupMap() {
